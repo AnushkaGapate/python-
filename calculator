@@ -1,0 +1,44 @@
+# Python program for calculator
+ 
+def add(num_1, num_2):
+    return num_1 + num_2
+ 
+def subtract(num_1, num_2):
+    return num_1 - num_2
+
+def multiply(num_1, num_2):
+    return num_1 * num_2
+ 
+def divide(num_1, num_2):
+    return num_1 / num_2
+ 
+print("choose one operation from -\n" \
+        "1. Add\n" \
+        "2. Subtract\n" \
+        "3. Multiply\n" \
+        "4. Divide\n")
+ 
+ 
+
+choose = int(input("choose one operation form 1, 2, 3, 4 :"))
+ 
+num_1 = int(input("Enter 1st number: "))
+num_2 = int(input("Enter 2nd number: "))
+ 
+if choose == 1:
+    print(num_1, "+", num_2, "=",
+        add(num_1, num_2))
+ 
+elif choose == 2:
+    print(num_1, "-", num_2, "=",
+        subtract(num_1, num_2))
+ 
+elif choose == 3:
+    print(num_1, "*", num_2, "=",
+        multiply(num_1, num_2))
+ 
+elif choose == 4:
+    print(num_1, "/", num_2, "=",
+        divide(num_1, num_2))
+else:
+    print("Invalid input")

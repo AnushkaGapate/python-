@@ -1,0 +1,85 @@
+#Contact Book Program
+
+contacts = {}
+
+def show_menu():
+    print("\nContact_Book Menu:")
+    print("1. View All the Contacts")
+    print("2. Add a Contact")
+    print("3. Search for a Contact")
+    print("4. Update your Contact")
+    print("5. Delete your Contact")
+    print("6. Exit")
+
+def view_contacts():
+    if not contacts:
+        print("\nYour contact book is empty.")
+    else:
+        print("\nYour Contacts:")
+        for name, info in contacts.items():
+            print(f"Name: {name}, Phone: {info['phone']}, Email: {info['email']}")
+
+def add_contact():
+    name = input("\n Name: ")
+    if name in contacts:
+        print("This contact already exists.")
+        return
+    phone = input("phone number: ")
+    email = input("Email address: ")
+    contacts[name] = {'phone': phone, 'email': email}
+    print(f"Contact '{name}' added.")
+
+def search_contact():
+    name = input("\nEnter the name of the contact to search: ")
+    if name in contacts:
+        info = contacts[name]
+        print(f"Found Contact - Name: {name}, Phone: {info['phone']}, Email: {info['email']}")
+    else:
+        print(f"cannot find the contact with the name '{name}'.")
+
+def update_contact():
+    name = input("\nEnter the name of the contact that you want to update: ")
+    if name in contacts:
+        phone = input("Enter new phone number: ")
+        email = input("Enter new email address: ")
+        
+        if phone:
+            contacts[name]['phone'] = phone
+        if email:
+            contacts[name]['email'] = email
+        
+        print(f"Contact '{name}' updated.")
+    else:
+        print(f"cannot find contact with the name '{name}'.")
+
+def delete_contact():
+    name = input("\nEnter the name of the contact to delete: ")
+    if name in contacts:
+        del contacts[name]
+        print(f"Contact '{name}' deleted.")
+    else:
+        print(f"cannot find contact with the name '{name}'.")
+
+def main():
+    while True:
+        show_menu()
+        choice = input("\nChoose any one option from 1-6: ")
+        
+        if choice == '1':
+            view_contacts()
+        elif choice == '2':
+            add_contact()
+        elif choice == '3':
+            search_contact()
+        elif choice == '4':
+            update_contact()
+        elif choice == '5':
+            delete_contact()
+        elif choice == '6':
+            print("Exit")
+            break
+        else:
+            print("Invalid choice. Please choose a number between 1 and 6.")
+
+if __name__ == "__main__":
+    main()

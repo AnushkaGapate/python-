@@ -1,0 +1,80 @@
+# program for to-do-list in python
+
+def display_menu():
+    print(" To-do-list Menu:")
+    print("1. Add Task")
+    print("2. View the Tasks")
+    print("3. Mark the task as Done")
+    print("4. Exit")
+
+
+def add_task(tasks):
+    task = input("Enter your task details: ")
+    tasks.append(task)
+    print("your task added successfully!")
+
+
+def view_tasks(tasks):
+    print("\n your to-do-list tasks:")
+    for i, task in enumerate(tasks, start=1):
+        print(f"{i}. {task}")
+
+
+def mark_task_done(tasks):
+    if not tasks:
+        print("No tasks in your to-do-list.")
+        return
+
+
+    view_tasks(tasks)
+    index = int(input("Enter task index to mark as done: ")) - 1
+
+
+    if 0 <= index < len(tasks):
+        removed_task = tasks.pop(index)
+        print(f"Task '{removed_task}' marked as done and successfully removed from ur list.")
+    else:
+        print("Invalid task.")
+
+
+def save_tasks(tasks):
+    with open("tasks.txt", "w") as f:
+        for task in tasks:
+            f.write(task + '\n')
+
+
+def load_tasks():
+    try:
+        with open("tasks.txt", "r") as f:
+            return f.read().splitlines()
+    except FileNotFoundError:
+        return []
+
+
+def main():
+    tasks = load_tasks()
+
+
+    while True:
+        display_menu()
+
+
+        choose = input("Enter: ")
+
+
+        if choose == '1':
+            add_task(tasks)
+        elif choose == '2':
+            view_tasks(tasks)
+        elif choose == '3':
+            mark_task_done(tasks)
+        elif choose == '4':
+            print("Exit.")
+            save_tasks(tasks)
+            break
+        else:
+            print("Invalid option. Please select a valid option.")
+
+
+if __name__ == "__main__":
+    main()
